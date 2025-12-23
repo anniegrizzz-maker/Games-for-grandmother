@@ -1,0 +1,115 @@
+#@title Найди свою любимую книгу и фильм с помощью этой программы!
+while True:
+    user_input = input("Введите любимые жанры книг (можно несколько, через запятую или пробел): ").lower()
+
+    # Если пользователь не хочет вводить жанры книг
+    if user_input in ['нет', 'не хочу', 'не', 'неа']:
+        print("😕 Почемууу? Это же так интересно! Попробуйте снова!")
+        continue  
+
+    # Приводим ввод к списку жанров
+    genres_input = [genre.strip() for genre in user_input.replace(',', ' ').split()]
+
+    # Словарь жанров и рекомендаций
+    recommendations = {
+        "ужасы": "Стивен Кинг — «Мобильник» 📱 или Томас Харрис — «Молчание ягнят» 🐑",
+        "детективы": "Агата Кристи — «Десять негритят» 🔎 или Рекс Стаут — «Если бы смерть спала»",
+        "романы": "Джоджо Мойес — «До встречи с тобой» ❤️ или Эрих Мария Ремарк — «Три товарища» 🍂",
+        "боевики": "Ли Чайлд — «Дело Джек Ричер» 💥 или Роберт Ладлэм — «Идентификация Борна» 🔫",
+        "фантастика": "Ханну Раяниеми — «Квантовый вор» 🚀 или Дэниел Киз — «Цветы для Элджернона» 🧠",
+        "антиутопии": "Джордж Оруэлл — «1984» 👁️ или Олдос Хаксли — «О дивный новый мир» 🌍",
+        "психология": "Эрик Берн — «Игры, в которые играют люди» 🧩 или Карл Густав Юнг — «Человек и его символы» 🔮",
+        "мистика": "Ширли Джексон — «Призрак дома на холме» 🏚️ или Нил Гейман — «Американские боги» ⚡"
+    }
+
+    # Списки с возможными вариантами жанров
+    roman_variants = ["романы", "роман"]
+    horror_variants = ["ужасы", "ужас"]
+    adventure_variants = ["боевики", "боевик"]
+    fantasy_variants = ["фантастика", "фэнтези"]
+    detective_variants = ["детективы", "детектив"]
+    psyhology_variants = ["психология", "психологический"]
+    antiutopia_variants = ["антиутопии", "антиутопия"]
+    mystery_variants = ["мистика"]
+
+    # Для поиска жанров
+    found = False
+    for genre in genres_input:
+        # Проверяем каждый жанр на совпадение с возможными вариантами
+        if any(genre in variant for variant in roman_variants):
+            print(f"\n📖 Рекомендация по жанру «Романы»: {recommendations['романы']}")
+            found = True
+        elif any(genre in variant for variant in horror_variants):
+            print(f"\n📖 Рекомендация по жанру «Ужасы»: {recommendations['ужасы']}")
+            found = True
+        elif any(genre in variant for variant in adventure_variants):
+            print(f"\n📖 Рекомендация по жанру «Боевики»: {recommendations['боевики']}")
+            found = True
+        elif any(genre in variant for variant in fantasy_variants):
+            print(f"\n📖 Рекомендация по жанру «Фантастика»: {recommendations['фантастика']}")
+            found = True
+        elif any(genre in variant for variant in detective_variants):
+            print(f"\n📖 Рекомендация по жанру «Детективы»: {recommendations['детективы']}")
+            found = True
+        elif any(genre in variant for variant in psyhology_variants):
+            print(f"\n📖 Рекомендация по жанру «Психология»: {recommendations['психология']}")
+            found = True
+        elif any(genre in variant for variant in antiutopia_variants):
+            print(f"\n📖 Рекомендация по жанру «Антиутопии»: {recommendations['антиутопии']}")
+            found = True
+        elif any(genre in variant for variant in mystery_variants):
+            print(f"\n📖 Рекомендация по жанру «Мистика»: {recommendations['мистика']}")
+            found = True
+
+    if not found:
+        print("\n😕 Увы, ничего не найдено по введённым жанрам. Попробуйте снова.")
+        continue  # продолжаем цикл, не переходим к фильмам
+    else:
+        break  # выходим из цикла, если жанры найдены
+
+# Тест на выбор фильма
+print("\n🎬 Теперь давайте выберем фильм по жанру. Ответьте на несколько вопросов!")
+
+# Словарь жанров фильмов и рекомендаций
+movie_recommendations = {
+    "ужасы": "«Сияние» (1980), «Психо» (1960)",
+    "боевики": "«Мстители: Война бесконечности» (2018), «Крепкий орешек» (1988)",
+    "комедии": "«Гардемарины, вперед!» (1979), «Глупый и еще глупее» (1994)",
+    "драмы": "«Зеленая миля» (1999), «Титаник» (1997)",
+    "фантастика": "«Интерстеллар» (2014), «Начало» (2010)"
+}
+
+# Списки с возможными вариантами для жанров фильмов
+horror_movie_variants = ["ужасы", "ужас"]
+adventure_movie_variants = ["боевики", "боевик"]
+comedy_movie_variants = ["комедии", "комедия"]
+drama_movie_variants = ["драмы", "драма"]
+fantasy_movie_variants = ["фантастика", "фэнтези"]
+
+while True:
+    movie_genre = input("Какой жанр фильма вам нравится (ужасы/боевики/комедии/драмы/фантастика)? ").lower()
+
+    # Если пользователь не хочет выбирать фильм
+    if movie_genre in ['нет', 'не хочу', 'не', 'неа']:
+        print("😕 Почемууу? Это же так интересно! Попробуйте снова!")
+        continue  # возвращаемся в начало цикла, не показываем фильмы
+
+    # Проверка жанров фильма
+    if any(movie_genre in variant for variant in horror_movie_variants):
+        print(f"\n🎥 Рекомендации по жанру «Ужасы»: {movie_recommendations['ужасы']}")
+        break  # выходим из цикла, если жанр найден
+    elif any(movie_genre in variant for variant in adventure_movie_variants):
+        print(f"\n🎥 Рекомендации по жанру «Боевики»: {movie_recommendations['боевики']}")
+        break
+    elif any(movie_genre in variant for variant in comedy_movie_variants):
+        print(f"\n🎥 Рекомендации по жанру «Комедии»: {movie_recommendations['комедии']}")
+        break
+    elif any(movie_genre in variant for variant in drama_movie_variants):
+        print(f"\n🎥 Рекомендации по жанру «Драмы»: {movie_recommendations['драмы']}")
+        break
+    elif any(movie_genre in variant for variant in fantasy_movie_variants):
+        print(f"\n🎥 Рекомендации по жанру «Фантастика»: {movie_recommendations['фантастика']}")
+        break
+    else:
+        print("\n❌ Увы, мы не нашли такого жанра для фильма! Попробуйте еще раз.")
+        continue  # продолжаем цикл, не переходим дальше
