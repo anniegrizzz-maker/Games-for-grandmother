@@ -1,0 +1,46 @@
+#@title Виселицаа хехехе
+import random
+
+def hangman_game():
+    words = ["кешью", "космос", "теннис", "окулист", "программист","резина","капли"," телескоп"]
+    word_to_guess = random.choice(words)
+    guessed_letters = []
+    attempts = 6  # Количество попыток
+    display_word = ["_"] * len(word_to_guess)  # Начальный вид слова
+
+    print("Привет! Давай сыграем в Виселицу!")
+    print("Я загадала слово, у тебя есть 6 попыток.")
+
+    while attempts > 0:
+        print(f"\nТекущий статус: {' '.join(display_word)}")
+        print(f"Оставшиеся попытки: {attempts}")
+        print(f"Уже угаданные буквы: {', '.join(guessed_letters)}")
+
+        guess = input("Введите букву: ").lower()
+
+        if len(guess) != 1 or not guess.isalpha():
+            print("Пожалуйста, вводи только одну букву.")
+            continue
+
+        if guess in guessed_letters:
+            print("Ты уже угадывал эту букву.")
+            continue
+
+        guessed_letters.append(guess)
+
+        if guess in word_to_guess:
+            print(f"Хорошо! Буква '{guess}' есть в слове.")
+            for i in range(len(word_to_guess)):
+                if word_to_guess[i] == guess:
+                    display_word[i] = guess
+        else:
+            print(f"Увы, буквы '{guess}' нет в слове.")
+            attempts -= 1
+
+        if "_" not in display_word:
+            print(f"\nПоздравляю, ты угадал слово: {word_to_guess}!")
+            break
+    else:
+        print(f"\nТы проиграл! Загаданное слово было: {word_to_guess}")
+
+hangman_game()
