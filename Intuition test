@@ -1,0 +1,36 @@
+#код который просит решить уравнение и говорит холодно, почти,жарко или правильно в зависимости от числа которое вписал пользователь
+#@title Проверь свою интуицию!
+import random
+import time
+
+def start_game():
+    print("Добро пожаловать в игру! Твоя задача — найти скрытое число.")
+    time.sleep(1)
+    print("Ты стоишь перед древней дверью. Чтобы открыть её, нужно найти правильный код.")
+    time.sleep(2)
+    number = random.randint(1, 10)  # Скрытое число от 1 до 10
+    attempts = 0
+    max_attempts = 5  # Ограничение по попыткам
+
+    while attempts < max_attempts:
+        try:
+            answer = float(input(f"Попытка {attempts + 1}/{max_attempts}. Введи число (от 1 до 10): "))
+
+            if answer == number:
+                print("Поздравляю! Ты открыл дверь!")
+                break
+            elif answer < number:
+                print("Теплее! Попробуй большее число.")
+            elif answer > number:
+                print("Холоднее! Попробуй меньшее число.")
+            attempts += 1
+            if attempts == max_attempts:
+                print(f"Ты не справился. Правильный ответ был: {number}.")
+                print("Попробуй ещё раз в следующий раз!")
+        except ValueError:
+            print("Пожалуйста, введи число!")
+
+    print("Игра завершена.")
+
+start_game()
+
