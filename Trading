@@ -1,0 +1,29 @@
+users_coins = 100
+
+store_of_MAGIC_things = {
+    "Зелье силы": 20,
+    "Магический амулет": 50,
+    "Злой дракон": 75,
+    "Волшебная палочка": 99
+}.item()
+
+def buy_item(item):
+    """Функция покупки предмета"""
+    global users_coins
+
+    if item in store_of_MAGIC_things:
+        price = store_of_MAGIC_things[item]
+
+        if users_coins >= price:
+            users_coins -= price
+            print(f"Вы купили {item} за {price} монет. У вас осталось {users_coins} монет.")
+        else:
+            print(f"У вас недостаточно монет. У вас есть {users_coins} монет.")
+    else:
+        print(f"Товар '{item}' не найден в магазине.")
+
+while users_coins > 0:
+    item_to_buy = input("\nВведите название товара, который вы хотите купить: ")
+    buy_item(item_to_buy)
+
+print("\nМонеты закончились. Покупки завершены.")
